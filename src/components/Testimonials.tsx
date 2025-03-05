@@ -21,7 +21,7 @@ const testimonials = [
     name: 'Elena Rodriguez',
     title: 'HR Director at GlobalFirm',
     image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80',
-    quote: 'The combination of AI-powered matching and blockchain verification has revolutionized our recruitment process. We've seen a 40% increase in successful placements since adopting Intellichain.',
+    quote: "The combination of AI-powered matching and blockchain verification has revolutionized our recruitment process. We've seen a 40% increase in successful placements since adopting Intellichain.",
     stars: 5
   }
 ];

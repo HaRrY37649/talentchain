@@ -7,6 +7,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import PostJob from "./pages/PostJob";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
+import Dashboard from "./pages/Dashboard";
+import Profile from "./pages/Profile";
+import VerifyCredentials from "./pages/VerifyCredentials";
 
 const queryClient = new QueryClient();
 
@@ -19,12 +24,14 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/post-job" element={<PostJob />} />
+          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/verify-credentials" element={<VerifyCredentials />} />
           {/* These routes will be implemented later */}
           <Route path="/ai-matching" element={<NotFound />} />
-          <Route path="/verify-credentials" element={<NotFound />} />
           <Route path="/find-jobs" element={<NotFound />} />
-          <Route path="/profile" element={<NotFound />} />
-          <Route path="/store-credentials" element={<NotFound />} />
           <Route path="/about" element={<NotFound />} />
           <Route path="/contact" element={<NotFound />} />
           <Route path="/privacy" element={<NotFound />} />

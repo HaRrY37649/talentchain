@@ -1,12 +1,20 @@
 
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from './Button';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, LogOut, User } from 'lucide-react';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const navigate = useNavigate();
+
+  // Check authentication status
+  useEffect(() => {
+    const authStatus = localStorage.getItem('isAuthenticated') === 'true';
+    setIsAuthenticated(authStatus);
+  }, []);
 
   // Handle scroll effect
   useEffect(() => {
@@ -23,6 +31,15 @@ const Navbar: React.FC = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  // Handle logout
+  const handleLogout = () => {
+    localStorage.removeItem('isAuthenticated');
+    localStorage.removeItem('userEmail');
+    localStorage.removeItem('userType');
+    setIsAuthenticated(false);
+    navigate('/');
+  };
 
   // Handle route navigation and close mobile menu
   const handleNavigation = () => {
@@ -76,7 +93,7 @@ const Navbar: React.FC = () => {
                 <div className="rounded-md shadow-lg py-1 bg-background border border-border overflow-hidden">
                   <Link to="/find-jobs" className="block px-4 py-2 text-sm hover:bg-primary/10" onClick={handleNavigation}>Find Jobs</Link>
                   <Link to="/profile" className="block px-4 py-2 text-sm hover:bg-primary/10" onClick={handleNavigation}>Create Profile</Link>
-                  <Link to="/store-credentials" className="block px-4 py-2 text-sm hover:bg-primary/10" onClick={handleNavigation}>Credential Storage</Link>
+                  <Link to="/verify-credentials" className="block px-4 py-2 text-sm hover:bg-primary/10" onClick={handleNavigation}>Credential Storage</Link>
                 </div>
               </div>
             </div>
@@ -92,8 +109,29 @@ const Navbar: React.FC = () => {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button variant="outline" size="sm">Sign in</Button>
-            <Button size="sm">Get Started</Button>
+            {isAuthenticated ? (
+              <div className="flex items-center space-x-4">
+                <Link to="/dashboard">
+                  <Button variant="outline" size="sm">
+                    <User className="mr-2 h-4 w-4" />
+                    Dashboard
+                  </Button>
+                </Link>
+                <Button variant="outline" size="sm" onClick={handleLogout}>
+                  <LogOut className="mr-2 h-4 w-4" />
+                  Sign out
+                </Button>
+              </div>
+            ) : (
+              <>
+                <Link to="/sign-in">
+                  <Button variant="outline" size="sm">Sign in</Button>
+                </Link>
+                <Link to="/sign-up">
+                  <Button size="sm">Get Started</Button>
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -125,7 +163,7 @@ const Navbar: React.FC = () => {
               <p className="font-medium text-sm text-muted-foreground mb-1">For Job Seekers</p>
               <Link to="/find-jobs" className="block py-2 text-foreground" onClick={handleNavigation}>Find Jobs</Link>
               <Link to="/profile" className="block py-2 text-foreground" onClick={handleNavigation}>Create Profile</Link>
-              <Link to="/store-credentials" className="block py-2 text-foreground" onClick={handleNavigation}>Credential Storage</Link>
+              <Link to="/verify-credentials" className="block py-2 text-foreground" onClick={handleNavigation}>Credential Storage</Link>
             </div>
             
             <Link to="/about" className="py-2 text-foreground" onClick={handleNavigation}>
@@ -137,8 +175,29 @@ const Navbar: React.FC = () => {
             </Link>
             
             <div className="pt-2 flex flex-col space-y-2">
-              <Button variant="outline" size="sm" className="w-full justify-center">Sign in</Button>
-              <Button size="sm" className="w-full justify-center">Get Started</Button>
+              {isAuthenticated ? (
+                <>
+                  <Link to="/dashboard" onClick={handleNavigation}>
+                    <Button variant="outline" size="sm" className="w-full justify-center">
+                      <User className="mr-2 h-4 w-4" />
+                      Dashboard
+                    </Button>
+                  </Link>
+                  <Button variant="outline" size="sm" className="w-full justify-center" onClick={handleLogout}>
+                    <LogOut className="mr-2 h-4 w-4" />
+                    Sign out
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Link to="/sign-in" onClick={handleNavigation}>
+                    <Button variant="outline" size="sm" className="w-full justify-center">Sign in</Button>
+                  </Link>
+                  <Link to="/sign-up" onClick={handleNavigation}>
+                    <Button size="sm" className="w-full justify-center">Get Started</Button>
+                  </Link>
+                </>
+              )}
             </div>
           </nav>
         </div>

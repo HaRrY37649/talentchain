@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -84,12 +85,63 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				float: {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-20px)' },
+				},
+				fadeIn: {
+					from: { opacity: '0', transform: 'translateY(10px)' },
+					to: { opacity: '1', transform: 'translateY(0)' },
+				},
+				fadeInLeft: {
+					from: { opacity: '0', transform: 'translateX(-20px)' },
+					to: { opacity: '1', transform: 'translateX(0)' },
+				},
+				fadeInRight: {
+					from: { opacity: '0', transform: 'translateX(20px)' },
+					to: { opacity: '1', transform: 'translateX(0)' },
+				},
+				pulse: {
+					'0%, 100%': { opacity: '1' },
+					'50%': { opacity: '0.7' },
+				},
+				shimmer: {
+					from: { backgroundPosition: '200% 0' },
+					to: { backgroundPosition: '-200% 0' },
+				},
+				scale: {
+					'0%, 100%': { transform: 'scale(1)' },
+					'50%': { transform: 'scale(1.05)' },
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
-			}
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				float: 'float 6s ease-in-out infinite',
+				fadeIn: 'fadeIn 0.6s ease-out',
+				fadeInDelayed: 'fadeIn 0.6s ease-out 0.3s forwards',
+				fadeInLeft: 'fadeInLeft 0.6s ease-out',
+				fadeInRight: 'fadeInRight 0.6s ease-out',
+				pulse: 'pulse 3s ease-in-out infinite',
+				shimmer: 'shimmer 3s linear infinite',
+				scale: 'scale 8s ease-in-out infinite',
+			},
+			backgroundImage: {
+				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+				'hero-pattern': 'linear-gradient(to bottom right, #101823, #1e3a5f)',
+				'card-gradient': 'linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.1) 100%)',
+				'blue-gradient': 'linear-gradient(90deg, #3b82f6 0%, #1d4ed8 100%)',
+			},
+			boxShadow: {
+				'glass': '0 4px 30px rgba(0, 0, 0, 0.1)',
+				'button': '0 10px 25px -3px rgba(59, 130, 246, 0.5)',
+				'card': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+			},
+			transitionProperty: {
+				'height': 'height',
+				'spacing': 'margin, padding',
+			},
 		}
 	},
 	plugins: [require("tailwindcss-animate")],

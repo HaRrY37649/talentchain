@@ -12,6 +12,14 @@ import SignUp from "./pages/SignUp";
 import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
 import VerifyCredentials from "./pages/VerifyCredentials";
+import AiMatching from "./pages/AiMatching";
+import FindJobs from "./pages/FindJobs";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
+import Cookies from "./pages/Cookies";
+import SmartContracts from "./pages/SmartContracts";
 
 const queryClient = new QueryClient();
 
@@ -29,15 +37,14 @@ const App = () => (
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/verify-credentials" element={<VerifyCredentials />} />
-          {/* These routes will be implemented later */}
-          <Route path="/ai-matching" element={<NotFound />} />
-          <Route path="/find-jobs" element={<NotFound />} />
-          <Route path="/about" element={<NotFound />} />
-          <Route path="/contact" element={<NotFound />} />
-          <Route path="/privacy" element={<NotFound />} />
-          <Route path="/terms" element={<NotFound />} />
-          <Route path="/cookies" element={<NotFound />} />
-          <Route path="/smart-contracts" element={<NotFound />} />
+          <Route path="/ai-matching" element={<AiMatching />} />
+          <Route path="/find-jobs" element={<FindJobs />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/cookies" element={<Cookies />} />
+          <Route path="/smart-contracts" element={<SmartContracts />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
